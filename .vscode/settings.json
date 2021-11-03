@@ -1,0 +1,11 @@
+{
+  "liveServer.settings.port": 5502,
+  "liveServer.settings.root": "/",
+  "liveServer.settings.CustomBrowser": "chrome",
+  "liveServer.settings.https": {
+    "enable": true,
+    "cert": "D:/Users/adria/Downloads/deform_holo/deform_space_holo/cert/localhost.pem",
+    "key": "D:/Users/adria/Downloads/deform_holo/deform_space_holo/cert/localhost.key",
+    "passphrase": "asdasd"
+  }
+}

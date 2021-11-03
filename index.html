@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width,
+    user-scalable=no,
+    initial-scale=1.0,
+    maximum-scale=1.0,
+    minimum-scale=1.0">
+  <meta name='mobile-web-app-capable' content='yes'>
+  <meta name='apple-mobile-web-app-capable' content='yes'>
+  <title>deform.holo</title>
+  <link rel="shortcut icon" type="image/png" href="./favicon/fav.png"/>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/style_ar.css">
+
+  
+  <!--everything is stored locally-->
+  <script src="./build/Three.js/three.module.js"></script>
+  <script src="./build/Three.js/three.min.js"></script> 
+  <script src="./build/Three.js/GLTFLoader.js"></script>
+  <script src="./build/Three.js/OrbitControls.js"></script>
+  <script src="./build/WebXR/webxr-polyfill.js"></script>
+</head>
+<body>
+
+  <!-- the following div is used as a container in the AR app -->
+  <div class="domOverlay" id="domOverlay"></div>
+
+  <div class="button">
+    <div class="button__container"></div>
+  </div>
+
+  <div class="info">
+    <button class="info__container" onclick="infoClassToggle()">
+      <div class="info__container__text">
+        Designed by Adrian Kulik of deform.space collective.
+      </div>
+      <img class="info__container__image" src="./build/info_icon.svg" alt="Icon showing that more information is availible.">
+    </button>
+  </div>
+
+  <!-- The following div is used as the canvas container for THREE.js model view -->
+  <div class="modelView"></div>
+
+  <script type="module" src="./model_viewer.js"></script>
+  <script src="./info_button.js"></script>
+  <script src="./build/AR/ar.js"></script>
+  <script src="./xr_checker.js"></script>
+
+</body>
+</html>
