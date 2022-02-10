@@ -14,9 +14,9 @@ camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight
 camera.position.z = 2;
 
 // spherical panorama
-const texture = new THREE.TextureLoader().load( './3D/bg.jpg', render );
-texture.mapping = THREE.EquirectangularReflectionMapping; // using this method reduces of the noise near the poles
-scene.background = texture; // neat trick, the scene is textured as the spherical panorama
+// const texture = new THREE.TextureLoader().load( './3D/bg.jpg', render );
+// texture.mapping = THREE.EquirectangularReflectionMapping; // using this method reduces of the noise near the poles
+// scene.background = texture; // neat trick, the scene is textured as the spherical panorama
 
 // mesh
 const loader = new THREE.GLTFLoader(); //using gltf, since it has texture data hardcoded
@@ -28,14 +28,12 @@ loader.load('./3D/untitled.glb', function(logo_mesh) {
 });
 
 // light
-let light1 = new THREE.PointLight(0xFFFFFF, 2);
-let light2 = new THREE.PointLight(0xFFFFFF, 2);
-light1.position.set(-10, 15, 50);
-light2.position.set(-10, 15, -50);
-scene.add(light1, light2);
+const light = new THREE.AmbientLight( 0xffffff, 2 ); // soft white light
+scene.add( light );
 
 // renderer
-renderer = new THREE.WebGLRenderer( {antialias: true, logarithmicDepthBuffer: true} );
+renderer = new THREE.WebGLRenderer( {antialias: true, logarithmicDepthBuffer: true, alpha: true} );
+renderer.setClearColor( 0xffffff, 1 );
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight );
 container.appendChild( renderer.domElement );

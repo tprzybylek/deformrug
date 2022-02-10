@@ -27,13 +27,8 @@ async function activateXR() {
   const scene = new THREE.Scene();
 
   // Setting up a light source
-  let light = new THREE.PointLight(0xFFFFFF, 2);
-  light.position.set(-10, 15, 50);
-  scene.add(light);
-  
-  let light2 = new THREE.PointLight(0xFFFFFF, 2);
-  light.position.set(10, 15, 50);
-  scene.add(light2);
+  const light = new THREE.AmbientLight( 0xffffff, 2 ); // soft white light
+  scene.add( light );
 
   // Set up the WebGLRenderer, which handles rendering to the session's base layer.
   const renderer = new THREE.WebGLRenderer({
@@ -147,7 +142,6 @@ async function activateXR() {
   }
 
   // Reticle helps the user with placing the 3D object in the scene
-  console.log(mesh_reticle);
   for (let i = 0; i < mesh_reticle.children.length; i++) { // the mesh can have a lot of children elements, so we need to iterate over them
     mesh_reticle.children[i].material.transparent = true;
     mesh_reticle.children[i].material.opacity = 0.5;
