@@ -33,19 +33,19 @@ const direction = new THREE.Vector3();
 const loader = new THREE.GLTFLoader(); //using gltf, since it has texture data hardcoded
 loader.load('./3D/place_roiale.glb', function(logo_mesh) {
 	const logo_mesh_scene = logo_mesh.scene;
-	logo_mesh_scene.position.set(0,-1,0); //the player's head is set to a meter above the ground. Though with the scaling in the next line I fear that it's closer to 10 meters than one...
+	logo_mesh_scene.position.set(0,-0.5,0); //the player's head is set to a meter above the ground. Though with the scaling in the next line I fear that it's closer to 10 meters than one...
 	logo_mesh_scene.scale.set(0.1,0.1,0.1); //scale is set to 10% of original, the movement feels natural this way
 	scene.add(logo_mesh_scene);
 	render();
 });
 
 // light
-const light = new THREE.HemisphereLight( 0xffffff, 0x000000, 1 ); //we get natural light decay (from white to black) using this light
+const light = new THREE.HemisphereLight( 0xffffff, 0x999999, 1 ); //we get natural light decay (from white to black) using this light
 scene.add( light );
 
 // renderer
 renderer = new THREE.WebGLRenderer( {antialias: true, logarithmicDepthBuffer: true, alpha: true} );
-renderer.setClearColor( 0xffffff, 1 );
+renderer.setClearColor( 0xdad1b6, 1 );
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight );
 container.appendChild( renderer.domElement );
