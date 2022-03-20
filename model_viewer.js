@@ -1,4 +1,4 @@
-import {OrbitControls} from './build/Three.js/OrbitControls.js';
+import {PointerLockControls} from './build/Three.js/PointerLockControls.js';
 
 // variables
 let camera, scene, renderer, controls;
@@ -11,7 +11,18 @@ scene = new THREE.Scene();
 
 // camera
 camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 0.0001, 10000 );
+camera.position.y = 0;
 camera.position.z = 2;
+
+var moveForward = false;
+var moveBackward = false;
+var moveLeft = false;
+var moveRight = false;
+var canJump = false;
+
+var prevTime = performance.now();
+const velocity = new THREE.Vector3();
+const direction = new THREE.Vector3();
 
 // spherical panorama
 // const texture = new THREE.TextureLoader().load( './3D/bg.jpg', render );
@@ -39,10 +50,77 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 container.appendChild( renderer.domElement );
 
 // controls
-controls = new OrbitControls( camera, renderer.domElement );
-controls.addEventListener( 'change', render );
-controls.enableDamping = true;
-controls.dampingFactor = 0.05;
+controls = new PointerLockControls( camera, renderer.domElement );
+
+// controls.addEventListener( 'change', render );
+document.addEventListener( 'click', function () {
+	controls.lock();
+} );
+
+scene.add( controls.getObject() );
+const onKeyDown = function ( event ) {
+
+	switch ( event.code ) {
+
+		case 'ArrowUp':
+		case 'KeyW':
+			moveForward = true;
+			break;
+
+		case 'ArrowLeft':
+		case 'KeyA':
+			moveLeft = true;
+			break;
+
+		case 'ArrowDown':
+		case 'KeyS':
+			moveBackward = true;
+			break;
+
+		case 'ArrowRight':
+		case 'KeyD':
+			moveRight = true;
+			break;
+
+		case 'Space':
+			if ( canJump === true ) velocity.y += 350;
+			canJump = false;
+			break;
+
+	}
+
+};
+
+const onKeyUp = function ( event ) {
+
+	switch ( event.code ) {
+
+		case 'ArrowUp':
+		case 'KeyW':
+			moveForward = false;
+			break;
+
+		case 'ArrowLeft':
+		case 'KeyA':
+			moveLeft = false;
+			break;
+
+		case 'ArrowDown':
+		case 'KeyS':
+			moveBackward = false;
+			break;
+
+		case 'ArrowRight':
+		case 'KeyD':
+			moveRight = false;
+			break;
+
+	}
+
+};
+
+document.addEventListener( 'keydown', onKeyDown );
+document.addEventListener( 'keyup', onKeyUp );
 
 // responsiveness
 window.addEventListener( 'resize', onWindowResize );
@@ -59,10 +137,31 @@ function render() {
 	renderer.render( scene, camera );
 }
 
-function gameLoop() {
-	window.requestAnimationFrame(gameLoop);
-	camera.updateProjectionMatrix();
-	controls.update(); // updating the controls must happen in the game loop in order to enable movement damping
+function animate() {
+	requestAnimationFrame( animate );
+
+	const time = performance.now();
+
+	if ( controls.isLocked === true ) {
+		const delta = ( time - prevTime ) / 1000;
+
+		velocity.x -= velocity.x * 5.5 * delta;
+		velocity.z -= velocity.z * 5.5 * delta;
+
+		// velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
+
+		direction.z = Number( moveForward ) - Number( moveBackward );
+		direction.x = Number( moveRight ) - Number( moveLeft );
+		direction.normalize(); // this ensures consistent movements in all directions
+
+		if ( moveForward || moveBackward ) velocity.z -= direction.z * 10.0 * delta;
+		if ( moveLeft || moveRight ) velocity.x -= direction.x * 10.0 * delta;
+
+		controls.moveRight( - velocity.x * delta );
+		controls.moveForward( - velocity.z * delta );
+	}
+	prevTime = time;
+	renderer.render( scene, camera );
 }
 
-gameLoop();
+animate();
