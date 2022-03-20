@@ -10,6 +10,9 @@ Spoiler alert: You will also understand the name of the project, because it refe
 “Music is liquid architecture; architecture is frozen music” (quote is linked to Goethe, Schellenberg, and Schopenhauer). 
 People will be able to play in the browser on their mobile phones and on their desktop browsers.
 
+## Mini games
+ * see [here](https://github.com/Liquitects/liquitecture/wiki/Missions)
+
 ## Data sets
 1. Paris 1739 stadtplan (Herzogin Anna Amalia Bibliothek) https://codingdavinci.de/daten/stadtplan-von-paris-aus-dem-jahr-1739
 1. Chopin (Jagiellonian Library) https://codingdavinci.de/daten/chopin
