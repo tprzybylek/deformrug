@@ -113,31 +113,8 @@
           justify-content: center;
 }
 
-.button__container__xr {
-  background-color: rgba(255, 255, 255, 0.3);
-  border: none;
-  color: #000000;
-  margin: 0px;
-  font-family: "Poppins-Black", sans-serif;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background-color: #ffffff23;
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-}
-
-.button__container__xr > img {
-  padding: calc(1vh + 2vw);
-}
-
 .info {
+  display: flex;
   padding: 2vh;
   z-index: 997;
   position: absolute;
@@ -154,7 +131,31 @@
   border: none;
   width: calc(6vh + 6vw);
   height: calc(6vh + 6vw);
-  background-color: #ffffff23;
+  background-color: #99999940;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: width 0.1s;
+  transition: width 0.1s;
+}
+
+.info__container:hover {
+  background-color: #80808040;
+}
+
+.instructions__container {
+  border: none;
+  width: calc(12vh + 12vw);
+  height: calc(6vh + 6vw);
+  background-color: #99999940;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   display: -webkit-box;
@@ -171,7 +172,7 @@
 }
 
 .info__container--active {
-  width: calc(100vw - 4vh);
+  width: calc(24vh + 24vw);
   -webkit-transition: width 0.1s;
   transition: width 0.1s;
 }
@@ -205,6 +206,13 @@
   font-family: "Poppins-Medium", sans-serif;
   color: #000000;
   display: none;
+}
+
+.instructions__containerr__text {
+  padding: calc(0.3vh + 0.3vw);
+  font-size: calc(0.6vh + 0.6vw);
+  font-family: "Poppins-Medium", sans-serif;
+  color: #000000;
 }
 
 .info__container__text--active {

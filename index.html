@@ -33,10 +33,21 @@
   <div class="info">
     <button class="info__container" onclick="infoClassToggle()">
       <div class="info__container__text">
-        Adrian Kulik, Jörg Reichert, Tomasz Przybyłek
+        Adrian Kulik, Jörg Reichert, Tomasz Przybyłek @ CdV Ost³ 2022
       </div>
       <img class="info__container__image" src="./build/info_icon.svg" alt="Icon showing that more information is availible.">
     </button>
+    <div class="instructions__container">
+      <div class="instructions__containerr__text">
+        <ul>
+          <li>movement: WSAD or arrow keys</li>
+          <li>exit game: Esc or click anywhere</li>
+        </ul>
+      </div>
+    </div>
+    <div class="instructions__container">
+        <button id="start__button" class="button" onclick="toggleLock()">Play</button>
+    </div>
   </div>
 
   <!-- The following div is used  as the canvas container for THREE.js model view -->
