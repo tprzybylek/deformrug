@@ -39,19 +39,6 @@ loader.load('./3D/place_roiale.glb', function(logo_mesh) {
 	render();
 });
 
-const box = new THREE.Box3();
-
-const mesh = new THREE.Mesh(
-	new THREE.SphereGeometry( 1, 3, 16 ),
-	new THREE.MeshBasicMaterial( { color: 0xffff00 } )
-);
-scene.add(mesh);
-console.log(mesh);
-
-// ensure the bounding box is computed for its geometry
-// this should be done only once (assuming static geometries)
-mesh.geometry.computeBoundingBox();
-
 // light
 const light = new THREE.HemisphereLight( 0xffffff, 0x999999, 1 ); //we get natural light decay (from white to black) using this light
 scene.add( light );
@@ -177,7 +164,11 @@ function animate() {
 	prevTime = time;
 	renderer.render( scene, camera );
 
-	box.copy( mesh.geometry.boundingBox ).applyMatrix4( mesh.matrixWorld );
+	//checking for collisions
+	console.log(camera.position.x, camera.position.z);
+	if (camera.position.x > -2 && camera.position.x < 2 && camera.position.z > -2 && camera.position.z < 2) {
+		camera.position.z = 2;
+	}
 }
 
 animate();
