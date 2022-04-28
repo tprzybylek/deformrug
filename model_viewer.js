@@ -163,6 +163,12 @@ function animate() {
 	}
 	prevTime = time;
 	renderer.render( scene, camera );
+
+	//checking for collisions
+	console.log(camera.position.x, camera.position.z);
+	if (camera.position.x > -2 && camera.position.x < 2 && camera.position.z > -2 && camera.position.z < 2) {
+		camera.position.z = 2;
+	}
 }
 
 animate();
